@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   ALGAEO DESIGN SYSTEM v2.0  — ported from the WordPress theme
+   ============================================================ */
+:root {
+  --font-display: var(--brand-font-display, "DM Serif Display"), Georgia, serif;
+  --font-body: var(--brand-font-body, "Geist"), system-ui, sans-serif;
+
+  --green-dark: var(--brand-primary, #2f6d64);
+  --green-mid: var(--brand-primary-mid, #3d8c82);
+  --green-light: var(--brand-accent, #5bcc4a);
+  --green-pale: var(--brand-accent-pale, #e8f5e4);
+  --off-white: var(--brand-bg, #f7f8f5);
+  --text-dark: var(--brand-text-dark, #1a1f1e);
+  --text-mid: var(--brand-text-mid, #4a5552);
+  --border: var(--brand-border, #e2e8e6);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-algaeo-off-white text-algaeo-text-dark font-body antialiased;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-algaeo-text-dark;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+  h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+  h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
+  ::selection { background: var(--green-pale); }
+}
+
+@layer components {
+  .container-x {
+    @apply max-w-container mx-auto px-6;
+  }
+
+  /* Buttons -------------------------------------------------- */
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-btn px-7 py-3 text-sm font-semibold
+           transition-all duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-algaeo-green-dark text-white border-2 border-algaeo-green-dark
+           hover:bg-algaeo-green-mid hover:border-algaeo-green-mid hover:-translate-y-0.5
+           hover:shadow-a-md;
+  }
+  .btn-outline {
+    @apply btn bg-transparent text-algaeo-green-dark border-2 border-algaeo-green-dark
+           hover:bg-algaeo-green-dark hover:text-white;
+  }
+  .btn-light {
+    @apply btn bg-white text-algaeo-green-dark border-2 border-white hover:-translate-y-0.5
+           hover:shadow-a-md;
+  }
+
+  .eyebrow {
+    @apply inline-block text-xs font-semibold uppercase tracking-[0.18em]
+           text-algaeo-green-mid mb-3;
+  }
+
+  .card {
+    @apply rounded-card border border-algaeo-border bg-white shadow-a-sm;
+  }
+
+  /* Signature: living "stat" pill used across the marketing pages */
+  .stat-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-algaeo-border
+           bg-white/80 px-4 py-2 text-sm font-medium text-algaeo-text-mid backdrop-blur;
+  }
+
+  /* Prose for blog content ---------------------------------- */
+  .prose-algaeo {
+    @apply text-algaeo-text-mid leading-relaxed;
+  }
+  .prose-algaeo h2 {
+    @apply font-display text-2xl mt-10 mb-4 text-algaeo-text-dark;
+  }
+  .prose-algaeo h3 {
+    @apply font-body font-semibold text-xl mt-8 mb-3 text-algaeo-text-dark;
+  }
+  .prose-algaeo p { @apply my-4; }
+  .prose-algaeo a { @apply text-algaeo-green-dark underline underline-offset-2; }
+  .prose-algaeo ul { @apply my-4 ml-5 list-disc space-y-2; }
+  .prose-algaeo ol { @apply my-4 ml-5 list-decimal space-y-2; }
+  .prose-algaeo strong { @apply text-algaeo-text-dark font-semibold; }
+  .prose-algaeo blockquote {
+    @apply border-l-4 border-algaeo-green-light pl-4 italic my-6 text-algaeo-text-mid;
+  }
+  .prose-algaeo img { @apply rounded-card my-6; }
+  .prose-algaeo code {
+    @apply rounded bg-algaeo-green-pale px-1.5 py-0.5 text-sm text-algaeo-green-dark;
+  }
+}
+
+/* Signature element: slow ambient "algae drift" gradient behind the hero ---- */
+@keyframes algae-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate(30px, -20px) scale(1.15); opacity: 0.8; }
+}
+.algae-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  animation: algae-drift 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Scroll-reveal (progressive enhancement) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .algae-orb { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}

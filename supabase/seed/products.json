@@ -1,0 +1,125 @@
+[
+  {
+    "title": "GrowForce Biofertilizer \u2014 12-Strain Professional Microbial Liquid",
+    "slug": "growforce-biofertilizer-12-strain-professional-microbial-liquid",
+    "price": 20.0,
+    "sku": "ALG-GROW-BIO",
+    "in_stock": true,
+    "categories": [
+      "Hydroponics",
+      "Row Crops & Forage",
+      "Turf & Pasture",
+      "Vegetables & Fruit"
+    ],
+    "short_description": "High-potency liquid microbial fertilizer with a 12-strain live consortia. Boosts nutrient uptake and root resilience in all growing systems. Ships live worldwide."
+  },
+  {
+    "title": "GrowForce Bentonite Clay \u2014 Mineral-Rich Soil Amendment",
+    "slug": "growforce-bentonite-clay-mineral-rich-soil-amendment",
+    "price": 24.99,
+    "sku": "ALG-GF-CLAY",
+    "in_stock": true,
+    "categories": [
+      "Row Crops & Forage",
+      "Turf & Pasture",
+      "Vegetables & Fruit"
+    ],
+    "short_description": "Premium pharmaceutical-grade bentonite clay for enhanced water retention and cation exchange capacity (CEC). Ideal for sandy soils and regenerative plots."
+  },
+  {
+    "title": "Biochar + Live Microbes \u2014 Activated Carbon for Soil Biology",
+    "slug": "biochar-live-microbes-activated-carbon-for-soil-biology",
+    "price": 29.99,
+    "sku": "ALG-BIOCHAR-001",
+    "in_stock": true,
+    "categories": [
+      "Row Crops & Forage",
+      "Turf & Pasture",
+      "Vegetables & Fruit"
+    ],
+    "short_description": "Activated biochar pre-colonized with 12 live strains. Rebuilds soil biology and provides permanent microbial habitat. +57% water retention."
+  },
+  {
+    "title": "Manual Module \u2014 Bioreactor",
+    "slug": "manual-module-professional-bioreactor-control-interface",
+    "price": 159.99,
+    "sku": "ALG-MAN-MOD",
+    "in_stock": true,
+    "categories": [
+      "Hardware"
+    ],
+    "short_description": "Ruggedized manual control interface for Algaeo bioreactor systems. Professional analog overrides for critical environmental management."
+  },
+  {
+    "title": "AutoModule \u2014 AI-Driven Bioreactor Control System",
+    "slug": "automodule-ai-driven-bioreactor-control-system",
+    "price": 1799.99,
+    "sku": "ALG-AUTO-MOD",
+    "in_stock": true,
+    "categories": [
+      "Hardware"
+    ],
+    "short_description": "AI-driven automated control module for precision bioreactor management. Real-time sensor integration and global cloud monitoring."
+  },
+  {
+    "title": "AgTurbo Nutrient Refill \u2014 Professional Growth Formula",
+    "slug": "agturbo-nutrient-refill-professional-growth-formula",
+    "price": 19.99,
+    "sku": "ALG-NUTRI-REF",
+    "in_stock": true,
+    "categories": [
+      "Hardware"
+    ],
+    "short_description": "Concentrated AgTurbo nutrient refill for continuous bioreactor operation. Professional-grade salts and trace minerals for maximum biomass production."
+  },
+  {
+    "title": "Live Nannochloropsis \u2014 Premium Reef Phytoplankton Culture",
+    "slug": "live-nannochloropsis-premium-reef-phytoplankton-culture",
+    "price": 25.0,
+    "sku": "ALG-NANNO",
+    "in_stock": true,
+    "categories": [
+      "Aquarium & Reef"
+    ],
+    "short_description": "Pure live Nannochloropsis phytoplankton. High-density marine culture for reef tanks, copepods, and professional aquaculture. Ships live worldwide."
+  },
+  {
+    "title": "Live Chlorella \u2014 Freshwater Microalgae Culture",
+    "slug": "live-chlorella-freshwater-microalgae-culture",
+    "price": 25.0,
+    "sku": "ALG-CHLO",
+    "in_stock": true,
+    "categories": [
+      "Aquarium & Reef",
+      "Hydroponics"
+    ],
+    "short_description": "Pure live Chlorella culture for freshwater ecosystems, research, and bioreactor inoculation. High-protein and rapid growth properties."
+  },
+  {
+    "title": "Live Scenedesmus \u2014 High-Density Freshwater Culture",
+    "slug": "live-scenedesmus-high-density-freshwater-culture",
+    "price": 25.0,
+    "sku": "ALG-SCEN",
+    "in_stock": true,
+    "categories": [
+      "Aquarium & Reef",
+      "Hydroponics"
+    ],
+    "short_description": "Pure live Scenedesmus culture. Rapidly growing freshwater microalgae ideal for bio-remediation, research, and carbon capture studies."
+  },
+  {
+    "title": "Algaeo Free Trial - GrowForce",
+    "slug": "algaeo-free-trial-growforce",
+    "price": 0.0,
+    "sku": "ALG-TRIAL-100",
+    "in_stock": true,
+    "categories": [
+      "Hardware",
+      "Hydroponics",
+      "Row Crops & Forage",
+      "Turf & Pasture",
+      "Vegetables & Fruit"
+    ],
+    "short_description": ""
+  }
+]
