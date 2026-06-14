@@ -105,6 +105,50 @@
   }
 }
 
+/* Signature element: ambient green microbubbles rising up the screen --------- */
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.6);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--bubble-opacity, 0.4);
+  }
+  50% {
+    transform: translateY(-50vh) translateX(var(--bubble-drift, 20px)) scale(1);
+  }
+  90% {
+    opacity: var(--bubble-opacity, 0.4);
+  }
+  100% {
+    transform: translateY(-105vh) translateX(0) scale(0.9);
+    opacity: 0;
+  }
+}
+
+.bubble-field {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+  pointer-events: none;
+}
+.bubble {
+  position: absolute;
+  bottom: -40px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 32% 30%,
+    rgba(255, 255, 255, 0.7),
+    rgba(91, 204, 74, 0.45) 45%,
+    rgba(47, 109, 100, 0.25) 100%
+  );
+  border: 1px solid rgba(91, 204, 74, 0.35);
+  box-shadow: 0 0 6px rgba(91, 204, 74, 0.25);
+  animation: bubble-rise var(--bubble-duration, 14s) linear infinite;
+  animation-delay: var(--bubble-delay, 0s);
+}
+
 /* Signature element: slow ambient "algae drift" gradient behind the hero ---- */
 @keyframes algae-drift {
   0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
@@ -131,6 +175,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .algae-orb { animation: none; }
+  .bubble { animation: none; display: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }

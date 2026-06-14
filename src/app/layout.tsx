@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CartDrawer } from "@/components/layout/CartDrawer";
+import { Bubbles } from "@/components/layout/Bubbles";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" style={themeStyle}>
       <body>
+        <Bubbles />
         <Header />
         <main className="min-h-[60vh]">{children}</main>
         <Footer />
