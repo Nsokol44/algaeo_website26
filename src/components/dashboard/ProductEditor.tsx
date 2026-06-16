@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import Link from "next/link";
 import { saveProduct, type ProductInput } from "@/app/dashboard/actions";
+import { ImageUploader } from "@/components/dashboard/ImageUploader";
 
 const CATEGORY_OPTIONS = [
   "Biofertilizer", "Row Crops & Forage", "Turf & Pasture", "Vegetables & Fruit",
@@ -82,7 +83,12 @@ export function ProductEditor({ initial }: { initial?: Partial<ProductInput> }) 
           />
         </label>
 
-        <Field label="Image URL (Supabase Storage or CDN)" value={imageUrl} onChange={setImageUrl} placeholder="https://…/product.png" />
+        <ImageUploader
+          bucket="product-images"
+          currentUrl={imageUrl || null}
+          onUploaded={setImageUrl}
+          label="Product photo"
+        />
 
         <div>
           <span className="mb-2 block text-xs font-semibold uppercase tracking-wide text-algaeo-text-light">Categories</span>

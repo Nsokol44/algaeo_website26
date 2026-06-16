@@ -5,6 +5,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { savePost, type PostInput } from "@/app/dashboard/actions";
+import { ImageUploader } from "@/components/dashboard/ImageUploader";
 
 const CATEGORIES = [
   "Regenerative Agriculture", "Plant Health", "Farm Economics", "AgTech and Innovation",
@@ -18,6 +19,7 @@ export function PostEditor({ initial }: { initial?: Partial<PostInput> }) {
   const [excerpt, setExcerpt] = useState(initial?.excerpt ?? "");
   const [category, setCategory] = useState(initial?.category ?? CATEGORIES[0]);
   const [content, setContent] = useState(initial?.content ?? "");
+  const [coverImage, setCoverImage] = useState(initial?.cover_image ?? "");
   const [error, setError] = useState<string | null>(null);
   const [tab, setTab] = useState<"write" | "preview">("write");
   const [pending, start] = useTransition();
@@ -26,7 +28,7 @@ export function PostEditor({ initial }: { initial?: Partial<PostInput> }) {
     if (!title.trim()) return setError("A title is required.");
     setError(null);
     start(async () => {
-      const res = await savePost({ id: initial?.id, title, slug, excerpt, category, content, status });
+      const res = await savePost({ id: initial?.id, title, slug, excerpt, category, content, status, cover_image: coverImage });
       if (res?.error) setError(res.error);
     });
   }
@@ -65,6 +67,13 @@ export function PostEditor({ initial }: { initial?: Partial<PostInput> }) {
           </label>
         </div>
         <Field label="Excerpt" value={excerpt} onChange={setExcerpt} placeholder="One or two sentences shown in listings and meta description." />
+
+        <ImageUploader
+          bucket="post-images"
+          currentUrl={coverImage || null}
+          onUploaded={setCoverImage}
+          label="Cover image"
+        />
 
         <div>
           <div className="mb-1 flex items-center justify-between">

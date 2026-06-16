@@ -38,6 +38,7 @@ export interface PostInput {
   category: string;
   content: string;
   status: PostStatus;
+  cover_image?: string;
 }
 
 export async function savePost(input: PostInput) {
@@ -56,6 +57,7 @@ export async function savePost(input: PostInput) {
         category: input.category,
         content: input.content,
         status: input.status,
+        cover_image: input.cover_image ?? null,
         ...(input.status === "published" ? { published_at: publishedAt } : {}),
       })
       .eq("id", input.id);
@@ -68,6 +70,7 @@ export async function savePost(input: PostInput) {
       category: input.category,
       content: input.content,
       status: input.status,
+      cover_image: input.cover_image ?? null,
       published_at: publishedAt,
     });
     if (error) return { error: error.message };
