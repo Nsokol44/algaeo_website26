@@ -24,7 +24,7 @@ export default function ContactPage() {
             </div>
             <div>
               <dt className="font-semibold text-algaeo-text-dark">Email</dt>
-              <dd className="text-algaeo-text-mid">hello@algaeo.com</dd>
+              <dd className="text-algaeo-text-mid">algaeo@algaeo.io</dd>
             </div>
             <div>
               <dt className="font-semibold text-algaeo-text-dark">Co-Op Partnerships</dt>
