@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { BlendFinder } from "@/components/home/BlendFinder";
 import { getPublishedPosts } from "@/lib/queries";
 import { formatDate } from "@/lib/format";
@@ -214,7 +215,17 @@ export default async function HomePage() {
           <div className="grid gap-6 md:grid-cols-3">
             {posts.map((p) => (
               <Link key={p.id} href={`/blog/${p.slug}`} className="card group overflow-hidden transition-shadow hover:shadow-a-md">
-                <div className="aspect-[16/9] bg-algaeo-green-pale" />
+                <div className="relative aspect-[16/9] bg-algaeo-green-pale">
+                  {p.cover_image ? (
+                    <Image
+                      src={p.cover_image}
+                      alt={p.title}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    />
+                  ) : null}
+                </div>
                 <div className="p-5">
                   <p className="text-xs font-semibold uppercase tracking-wide text-algaeo-green-mid">
                     {p.category}

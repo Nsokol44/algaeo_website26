@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getPublishedPosts } from "@/lib/queries";
 import { formatDate } from "@/lib/format";
 
@@ -24,7 +25,18 @@ export default async function BlogPage() {
           href={`/blog/${featured.slug}`}
           className="card group mb-10 grid overflow-hidden md:grid-cols-2"
         >
-          <div className="aspect-[16/10] bg-algaeo-green-pale md:aspect-auto" />
+          <div className="relative aspect-[16/10] bg-algaeo-green-pale md:aspect-auto">
+            {featured.cover_image ? (
+              <Image
+                src={featured.cover_image}
+                alt={featured.title}
+                fill
+                className="object-cover"
+                sizes="(min-width: 768px) 50vw, 100vw"
+                priority
+              />
+            ) : null}
+          </div>
           <div className="p-8">
             <p className="text-xs font-semibold uppercase tracking-wide text-algaeo-green-mid">
               {featured.category} · Featured
@@ -39,7 +51,17 @@ export default async function BlogPage() {
       <div className="grid gap-6 md:grid-cols-3">
         {rest.map((p) => (
           <Link key={p.id} href={`/blog/${p.slug}`} className="card group overflow-hidden transition-shadow hover:shadow-a-md">
-            <div className="aspect-[16/9] bg-algaeo-green-pale" />
+            <div className="relative aspect-[16/9] bg-algaeo-green-pale">
+              {p.cover_image ? (
+                <Image
+                  src={p.cover_image}
+                  alt={p.title}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
+              ) : null}
+            </div>
             <div className="p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-algaeo-green-mid">{p.category}</p>
               <h3 className="mt-2 font-display text-lg leading-snug group-hover:text-algaeo-green-dark">{p.title}</h3>
