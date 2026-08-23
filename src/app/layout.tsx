@@ -42,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="min-h-[60vh]">{children}</main>
         <Footer />
         <CartDrawer />
+        <Analytics />
       </body>
     </html>
   );
