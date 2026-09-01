@@ -1,30 +1,52 @@
-# Algaeo — Next.js 15 + Supabase
+# Algaeo — Next.js 15 + Supabase (B2B SaaS)
 
-A full rebuild of [algaeo.com](https://algaeo.com) migrating off WordPress/WooCommerce to a
-serverless stack: **Next.js 15 (App Router) · React 19 · Supabase (Postgres + Auth) · Stripe ·
-Tailwind CSS · Zustand**.
-
-Everything from the original site is here — marketing pages, the shop and product pages, cart and
-Stripe checkout, the interactive Blend Finder, the full blog — plus a password-protected **admin
-dashboard** for writing and publishing articles in Markdown.
+Marketing + blog CMS site for Algaeo, a **subscription formulation-intelligence platform** sold to
+co-ops and commercial fertilizer blenders: **Next.js 15 (App Router) · React 19 · Supabase (Postgres +
+Auth) · Tailwind CSS**.
 
 ---
 
-## What's included
+## This is a pivot, not the original site
 
-| Area | Route | Notes |
-|------|-------|-------|
-| Homepage | `/` | Hero, trial data, co-op value, AutoModule, free-sample CTA, Blend Finder, ingredient transparency, latest articles |
-| Shop | `/shop`, `/shop/[slug]` | Category filtering, product detail, add-to-cart |
-| Cart & checkout | `/cart` → Stripe Checkout → `/checkout/success` | Prices re-validated server-side |
-| Blog | `/blog`, `/blog/[slug]` | Markdown rendering, JSON-LD, static generation |
-| Marketing | `/about-us`, `/co-op-partners`, `/automodule`, `/contact`, `/privacy-policy` | Contact form writes to `leads` |
-| **Admin dashboard** | `/dashboard` | Auth-gated. Create / edit / publish / unpublish / delete posts with live Markdown preview |
-| Auth | `/login` | Supabase email + password |
-| API | `/api/checkout`, `/api/webhooks/stripe` | Checkout session + order webhook |
+Algaeo started as a direct-to-consumer biofertilizer liquid — a physical, regulated product requiring
+state-by-state fertilizer registration. It's now repositioned entirely as **B2B software**: a
+digital-twin model that takes soil type, crop type, and field data and generates fertilizer blend
+recommendations, sold as a subscription to co-ops and commercial blenders. The co-op does the actual
+physical blending and already holds the fertilizer registration as a licensed distributor — Algaeo
+sells software and agronomic intelligence, never touching a regulated substance.
 
-Content already migrated from your WordPress export: **30 blog posts** and **10 products**
-(`supabase/seed/`).
+**Everything commerce-related has been removed**, not just hidden: shop, cart, checkout, Stripe,
+webhooks, shipping labels, product/order dashboards, and product reviews are all gone. The earlier
+e-commerce database migrations are preserved for history in
+`supabase/migrations/_deprecated_ecommerce/` but are not run — this project runs on a fresh schema
+(`0001_saas_init.sql`) with just three tables: `profiles` (admin auth), `posts` (blog CMS), and `leads`
+(demo requests — now the entire site's conversion goal, replacing "add to cart").
+
+## What's here now
+
+- **Marketing pages**: homepage, `/platform` (how the digital-twin model works), `/pricing` (3 tiers,
+  all demo-gated — sales motion is direct outreach, not self-serve billing, per the actual go-to-market
+  strategy), `/request-demo`, `/about-us`, `/contact`
+- **Blog**: 3 launch posts on the actual repositioning (manufacturer-rep conflict of interest, what the
+  model does with soil/crop data, why no fertilizer registration is needed) — replacing the 30 old
+  consumer GrowForce articles
+- **Dashboard**: blog CMS (unchanged) + a new `/dashboard/leads` page to view demo requests, which
+  didn't exist before since the old site's conversion goal was checkout, not a form submission
+- **Legal**: privacy policy and terms of service rewritten for a software/data context — no more
+  shipping/returns policies, since there's no physical product
+- **The ambient bubble/algae-drift visual motif is unchanged** — still genuinely fits an algae-biology
+  brand even as a SaaS company, so unlike the sibling brand sites forked from this codebase, it was
+  kept rather than removed
+
+## What's NOT here (by design)
+
+No self-serve subscription billing (Stripe Billing, etc.) — the stated go-to-market is direct outreach
+to co-ops, extension-service relationships, and industry conferences, not instant sign-up. Every
+pricing tier routes to `/request-demo`. Add real billing once the sales motion is proven and a co-op
+actually needs to self-serve upgrade/downgrade.
+
+No product-recommendation engine itself — this repo is the marketing/content/lead-gen site around the
+platform, not the digital-twin model or its API. That's a separate application.
 
 ---
 
@@ -32,9 +54,6 @@ Content already migrated from your WordPress export: **30 blog posts** and **10 
 
 - Node.js 18.18+ (or 20+)
 - A free [Supabase](https://supabase.com) project
-- A [Stripe](https://stripe.com) account (test mode is fine to start)
-
----
 
 ## 1. Install
 
@@ -43,46 +62,25 @@ npm install
 cp .env.example .env.local
 ```
 
-Fill in `.env.local`:
-
-```
-NEXT_PUBLIC_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=...        # Supabase → Project Settings → API
-SUPABASE_SERVICE_ROLE_KEY=...            # same page — keep secret, server only
-STRIPE_SECRET_KEY=sk_test_...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...          # from `stripe listen` or the dashboard
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-```
-
 ## 2. Create the database schema
 
-Open the Supabase **SQL Editor** and run the contents of
-[`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql).
-(Or, with the Supabase CLI: `supabase db push`.)
+Run `supabase/migrations/0001_saas_init.sql` then `0002_storage.sql` in the Supabase SQL Editor, or
+`supabase db push`. Do **not** run anything in `_deprecated_ecommerce/` — kept for historical reference
+only.
 
-This creates `products`, `posts`, `orders`, `order_items`, `profiles`, and `leads`, with Row Level
-Security policies and an `is_admin()` helper.
-
-## 3. Seed your content
+## 3. Seed the blog
 
 ```bash
 npm run seed
 ```
 
-Loads the 30 posts and 10 products into Supabase. Safe to re-run (upserts on `slug`).
-
 ## 4. Create your admin user
 
-1. In Supabase → **Authentication → Users → Add user**, create yourself an account
-   (email + password). A `profiles` row is created automatically.
-2. Promote it to admin in the **SQL Editor**:
+In Supabase → **Authentication → Users → Add user**, then in the SQL Editor:
 
-   ```sql
-   update public.profiles set is_admin = true where email = 'you@example.com';
-   ```
-
-Only admins can reach `/dashboard` or write posts — enforced both in middleware and by RLS.
+```sql
+update public.profiles set is_admin = true where email = 'you@example.com';
+```
 
 ## 5. Run it
 
@@ -90,74 +88,7 @@ Only admins can reach `/dashboard` or write posts — enforced both in middlewar
 npm run dev          # http://localhost:3000
 ```
 
-Sign in at `/login`, then head to `/dashboard` to write your first article.
-
----
-
-## Stripe checkout & order webhook
-
-Test the full payment flow locally with the Stripe CLI:
-
-```bash
-stripe listen --forward-to localhost:3000/api/webhooks/stripe
-# copy the printed whsec_... into STRIPE_WEBHOOK_SECRET
-```
-
-On a successful payment, `checkout.session.completed` fires and the webhook records the order in the
-`orders` table using the service-role client (which bypasses RLS).
-
----
-
 ## Deploy to Vercel
 
-1. Push this repo to GitHub and import it in Vercel.
-2. Add every variable from `.env.local` to **Vercel → Settings → Environment Variables**
-   (set `NEXT_PUBLIC_SITE_URL` to your production domain).
-3. In the **Stripe dashboard**, add a webhook endpoint pointing at
-   `https://yourdomain.com/api/webhooks/stripe` and copy its signing secret into Vercel.
-4. Deploy.
-
-The old WordPress URLs (`/product/...`, dated blog permalinks, `/contact-us`, `/my-account`) are
-301-redirected to their new homes in [`next.config.ts`](next.config.ts) so you keep your SEO
-authority.
-
----
-
-## Project structure
-
-```
-src/
-  app/
-    (marketing)/        about-us · automodule · co-op-partners · contact · privacy-policy
-    api/                checkout · webhooks/stripe
-    blog/               list + [slug]
-    shop/               list + [slug]
-    cart/  checkout/    cart page + success
-    dashboard/          admin CMS (layout, list, posts/new, posts/[id], actions.ts)
-    login/              Supabase auth
-    layout.tsx  page.tsx  globals.css
-  components/           layout · home · shop · dashboard
-  lib/
-    supabase/           client · server · middleware helpers
-    queries.ts          typed data-access layer
-    stripe.ts  types.ts  format.ts
-  store/cart.ts         Zustand cart (persisted to localStorage)
-supabase/
-  migrations/0001_init.sql
-  seed/                 posts.json · products.json · seed.ts
-middleware.ts           session refresh + dashboard gate
-next.config.ts          301 redirects from WordPress
-```
-
-## How to manage your blog
-
-The dashboard replaces the WordPress editor. Sign in, click **+ New Article**, write in Markdown with
-a live preview, then **Save Draft** or **Publish**. Published posts appear instantly on `/blog`
-(paths are revalidated on save). No rebuild or redeploy needed to publish.
-
-## Notes
-
-- Product and post images use neutral placeholders. Upload images to a Supabase Storage bucket and
-  set `image_url` / `cover_image` to wire them in.
-- Transactional email (receipts beyond Stripe's) isn't included — add [Resend](https://resend.com)
-  in the webhook handler when you're ready.
+Push to GitHub, import in Vercel, add every variable from `.env.local` to Vercel's environment
+variables, deploy. No Stripe webhook to register — there's nothing to bill yet.

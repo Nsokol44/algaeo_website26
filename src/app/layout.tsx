@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { CartDrawer } from "@/components/layout/CartDrawer";
 import { Bubbles } from "@/components/layout/Bubbles";
 import { siteConfig } from "@/config/site";
-import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -41,7 +39,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="min-h-[60vh]">{children}</main>
         <Footer />
-        <CartDrawer />
       </body>
     </html>
   );

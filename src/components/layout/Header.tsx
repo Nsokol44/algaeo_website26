@@ -3,14 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useCart } from "@/store/cart";
 import { siteConfig } from "@/config/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const count = useCart((s) => s.count());
-  const openCart = useCart((s) => s.open);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -49,21 +46,9 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/shop" className="hidden btn-primary sm:inline-flex">
-            Order Now
+          <Link href="/request-demo" className="hidden btn-primary sm:inline-flex">
+            Request a Demo
           </Link>
-          <button
-            onClick={openCart}
-            aria-label="Open cart"
-            className="relative rounded-btn p-2 text-algaeo-text-dark hover:bg-algaeo-green-pale"
-          >
-            <CartIcon />
-            {count > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-algaeo-green-light px-1 text-xs font-bold text-white">
-                {count}
-              </span>
-            )}
-          </button>
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle menu"
@@ -88,19 +73,17 @@ export function Header() {
                 {n.label}
               </Link>
             ))}
+            <Link
+              href="/request-demo"
+              onClick={() => setOpen(false)}
+              className="btn-primary mt-3 justify-center"
+            >
+              Request a Demo
+            </Link>
           </div>
         </nav>
       )}
     </header>
-  );
-}
-
-function CartIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
-      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-    </svg>
   );
 }
 

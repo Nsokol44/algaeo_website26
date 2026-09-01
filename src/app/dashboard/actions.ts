@@ -38,7 +38,6 @@ export interface PostInput {
   category: string;
   content: string;
   status: PostStatus;
-  cover_image?: string;
 }
 
 export async function savePost(input: PostInput) {
@@ -57,7 +56,6 @@ export async function savePost(input: PostInput) {
         category: input.category,
         content: input.content,
         status: input.status,
-        cover_image: input.cover_image ?? null,
         ...(input.status === "published" ? { published_at: publishedAt } : {}),
       })
       .eq("id", input.id);
@@ -70,7 +68,6 @@ export async function savePost(input: PostInput) {
       category: input.category,
       content: input.content,
       status: input.status,
-      cover_image: input.cover_image ?? null,
       published_at: publishedAt,
     });
     if (error) return { error: error.message };
@@ -108,57 +105,4 @@ export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
   redirect("/login");
-}
-
-// ── Products ────────────────────────────────────────────────
-export interface ProductInput {
-  id?: string;
-  title: string;
-  slug?: string;
-  short_description: string;
-  description: string;
-  price: number;
-  sku: string;
-  in_stock: boolean;
-  categories: string[];
-  image_url: string;
-  featured: boolean;
-}
-
-export async function saveProduct(input: ProductInput) {
-  const supabase = await requireAdmin();
-  const slug = input.slug?.trim() || slugify(input.title);
-  const row = {
-    title: input.title,
-    slug,
-    short_description: input.short_description,
-    description: input.description,
-    price: input.price,
-    sku: input.sku || null,
-    in_stock: input.in_stock,
-    categories: input.categories,
-    image_url: input.image_url || null,
-    featured: input.featured,
-  };
-
-  if (input.id) {
-    const { error } = await supabase.from("products").update(row).eq("id", input.id);
-    if (error) return { error: error.message };
-  } else {
-    const { error } = await supabase.from("products").insert(row);
-    if (error) return { error: error.message };
-  }
-
-  revalidatePath("/shop");
-  revalidatePath(`/shop/${slug}`);
-  revalidatePath("/dashboard/products");
-  redirect("/dashboard/products");
-}
-
-export async function deleteProduct(id: string) {
-  const supabase = await requireAdmin();
-  const { error } = await supabase.from("products").delete().eq("id", id);
-  if (error) return { error: error.message };
-  revalidatePath("/shop");
-  revalidatePath("/dashboard/products");
 }

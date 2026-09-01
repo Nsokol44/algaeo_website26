@@ -23,11 +23,8 @@ export default async function DashboardLayout({ children }: { children: React.Re
           <Link href="/dashboard/posts/new" className="rounded px-3 py-2 hover:bg-algaeo-green-pale">
             + New Article
           </Link>
-          <Link href="/dashboard/products" className="mt-2 rounded px-3 py-2 hover:bg-algaeo-green-pale">
-            Products
-          </Link>
-          <Link href="/dashboard/products/new" className="rounded px-3 py-2 hover:bg-algaeo-green-pale">
-            + New Product
+          <Link href="/dashboard/leads" className="mt-2 rounded px-3 py-2 hover:bg-algaeo-green-pale">
+            Demo Requests
           </Link>
           <Link href="/blog" className="mt-2 rounded px-3 py-2 text-algaeo-text-mid hover:bg-algaeo-green-pale">
             View live blog ↗

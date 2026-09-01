@@ -1,25 +1,8 @@
-// Domain + database types. The Database type uses the full shape supabase-js
-// expects (Views/Functions/Enums/CompositeTypes/Relationships) so query results
-// resolve to real row types instead of `never`. In production you may replace
-// this with `supabase gen types typescript`.
+// Domain + database types for the Algaeo B2B SaaS site: blog CMS + leads
+// (demo requests) + auth profiles. No commerce types — this business sells
+// software/agronomic intelligence, not a physical, regulated product.
 
 export type PostStatus = "draft" | "published";
-export type OrderStatus = "pending" | "paid" | "fulfilled" | "cancelled";
-
-export interface Product {
-  id: string;
-  slug: string;
-  title: string;
-  short_description: string | null;
-  description: string | null;
-  price: number;
-  sku: string | null;
-  in_stock: boolean;
-  categories: string[];
-  image_url: string | null;
-  featured: boolean;
-  created_at: string;
-}
 
 export interface Post {
   id: string;
@@ -57,12 +40,6 @@ export interface Lead {
 export interface Database {
   public: {
     Tables: {
-      products: {
-        Row: Product;
-        Insert: Partial<Product> & { slug: string; title: string };
-        Update: Partial<Product>;
-        Relationships: [];
-      };
       posts: {
         Row: Post;
         Insert: Partial<Post> & { slug: string; title: string };
@@ -84,7 +61,7 @@ export interface Database {
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
-    Enums: { post_status: PostStatus; order_status: OrderStatus };
+    Enums: { post_status: PostStatus };
     CompositeTypes: Record<string, never>;
   };
 }

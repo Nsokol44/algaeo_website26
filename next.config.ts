@@ -7,19 +7,18 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "**.supabase.co" },
     ],
   },
-  // 301 redirects preserve SEO authority from the old WordPress URL structure.
+  // Redirects for routes that existed under the old D2C e-commerce model —
+  // preserves any existing inbound links/SEO authority rather than 404ing.
   async redirects() {
     return [
-      // Old WP product permalinks → new /shop/[slug]
-      { source: "/product/:slug", destination: "/shop/:slug", permanent: true },
-      { source: "/product-category/:slug", destination: "/shop", permanent: true },
-      // Old WP blog: dated permalinks /YYYY/MM/DD/slug → /blog/slug
-      {
-        source: "/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug",
-        destination: "/blog/:slug",
-        permanent: true,
-      },
-      // Renamed pages
+      { source: "/shop", destination: "/pricing", permanent: true },
+      { source: "/shop/:slug", destination: "/platform", permanent: true },
+      { source: "/cart", destination: "/pricing", permanent: true },
+      { source: "/checkout/success", destination: "/", permanent: false },
+      { source: "/co-op-partners", destination: "/platform", permanent: true },
+      { source: "/automodule", destination: "/platform", permanent: true },
+      { source: "/shipping-policy", destination: "/terms-of-service", permanent: true },
+      { source: "/returns-policy", destination: "/terms-of-service", permanent: true },
       { source: "/contact-us", destination: "/contact", permanent: true },
       { source: "/my-account", destination: "/login", permanent: true },
     ];

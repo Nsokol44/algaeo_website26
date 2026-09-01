@@ -1,18 +1,16 @@
 /**
  * Centralized brand/site configuration. Every UI component reads from here —
  * never hardcode brand name, copy, links, colors, or metadata in components.
- * To re-skin this template for a new brand, edit only .env (and this file's
- * static fallbacks/content blocks below).
  */
 
 const env = (key: string, fallback = "") => process.env[key] ?? fallback;
 
 export const siteConfig = {
   name: env("NEXT_PUBLIC_SITE_NAME", "Algaeo"),
-  tagline: env("NEXT_PUBLIC_SITE_TAGLINE", "Live Microbial Biology for Regenerative Agriculture"),
+  tagline: env("NEXT_PUBLIC_SITE_TAGLINE", "Independent Formulation Guidance for Co-Ops"),
   description: env(
     "NEXT_PUBLIC_SITE_DESCRIPTION",
-    "GrowForce is a 12-strain live microbial consortia that unlocks bound nitrogen, solubilizes phosphorus, and improves moisture retention at $2–5 per acre. Lab grown in Knoxville, TN.",
+    "Algaeo turns soil type, crop type, and field data into fertilizer blend recommendations for co-op agronomists and commercial blenders — independent of any manufacturer, so the advice isn't tied to a sale.",
   ),
   url: env("NEXT_PUBLIC_SITE_URL", "http://localhost:3000"),
 
@@ -20,7 +18,9 @@ export const siteConfig = {
   supportEmail: env("NEXT_PUBLIC_SUPPORT_EMAIL", "hello@algaeo.com"),
   locationLabel: env("NEXT_PUBLIC_LOCATION_LABEL", "Knoxville, TN"),
 
-  // Theme tokens — map to CSS variables in globals.css
+  // Theme tokens — map to CSS variables in globals.css. Unchanged from the
+  // consumer-product era: still an algae/water-biology brand, just selling
+  // the formulation intelligence behind it rather than a bottle.
   theme: {
     fontDisplay: env("NEXT_PUBLIC_FONT_DISPLAY", "DM Serif Display"),
     fontBody: env("NEXT_PUBLIC_FONT_BODY", "Geist"),
@@ -42,21 +42,15 @@ export const siteConfig = {
     dark: env("NEXT_PUBLIC_LOGO_DARK", "/logo-dark.png"),
   },
 
-  // Primary nav — edit per brand
+  // Primary nav — no /shop, /cart, /co-op-partners, or /automodule anymore.
+  // Sales motion is direct outreach + demo request, not self-serve checkout.
   nav: [
-    { label: "Shop", href: "/shop" },
-    { label: "News", href: "/blog" },
-    { label: "For Co-Ops", href: "/co-op-partners" },
-    { label: "AutoModule", href: "/automodule" },
+    { label: "Platform", href: "/platform" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Blog", href: "/blog" },
     { label: "About", href: "/about-us" },
     { label: "Contact", href: "/contact" },
   ],
-
-  // Commerce
-  commerce: {
-    freeShippingThreshold: Number(env("NEXT_PUBLIC_FREE_SHIPPING_THRESHOLD", "75")),
-    currency: env("NEXT_PUBLIC_CURRENCY", "usd"),
-  },
 
   social: {
     twitter: env("NEXT_PUBLIC_SOCIAL_TWITTER", ""),

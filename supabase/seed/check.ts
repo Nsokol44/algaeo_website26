@@ -13,7 +13,7 @@ console.log("service key present     =", key ? `yes (${key.length} chars)` : "NO
 
 if (url.startsWith("https://") && key) {
   const supabase = createClient(url, key);
-  for (const t of ["products", "posts", "profiles"]) {
+  for (const t of ["posts", "profiles", "leads"]) {
     const { count, error } = await supabase.from(t).select("*", { count: "exact", head: true });
     console.log(`table ${t.padEnd(9)} →`, error ? `ERROR: ${error.message}` : `${count} rows`);
   }

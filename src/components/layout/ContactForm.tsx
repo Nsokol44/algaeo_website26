@@ -4,18 +4,17 @@ import { useState, useTransition } from "react";
 import { submitLead } from "@/app/(marketing)/contact/actions";
 
 const TOPICS = [
+  { value: "demo-request", label: "Request a demo" },
+  { value: "pricing", label: "Pricing question" },
   { value: "contact", label: "General inquiry" },
-  { value: "co-op", label: "Co-op / distributor partnership" },
-  { value: "free-sample", label: "Free sample request" },
-  { value: "automodule", label: "AutoModule pre-order" },
 ];
 
-export function ContactForm() {
+export function ContactForm({ initialTopic, initialMessage }: { initialTopic?: string; initialMessage?: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [org, setOrg] = useState("");
-  const [source, setSource] = useState("contact");
-  const [message, setMessage] = useState("");
+  const [source, setSource] = useState(initialTopic ?? "contact");
+  const [message, setMessage] = useState(initialMessage ?? "");
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
   const [pending, start] = useTransition();
@@ -51,7 +50,7 @@ export function ContactForm() {
           <Field label="Email" type="email" value={email} onChange={setEmail} required />
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Farm / Organization (optional)" value={org} onChange={setOrg} />
+          <Field label="Co-Op / Organization (optional)" value={org} onChange={setOrg} />
           <label className="block">
             <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-algaeo-text-light">
               Topic
@@ -75,7 +74,7 @@ export function ContactForm() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={6}
-            placeholder="Tell us about your operation, acreage, and what you're hoping to achieve."
+            placeholder="Tell us about your co-op or blending operation — locations, agronomist team size, and what you're hoping to get out of an independent formulation tool."
             className="w-full rounded-card border border-algaeo-border p-4 text-sm focus:border-algaeo-green-mid focus:outline-none"
           />
         </label>
