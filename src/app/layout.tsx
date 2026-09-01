@@ -6,6 +6,7 @@ import { CartDrawer } from "@/components/layout/CartDrawer";
 import { Bubbles } from "@/components/layout/Bubbles";
 import { siteConfig } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <CartDrawer />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
