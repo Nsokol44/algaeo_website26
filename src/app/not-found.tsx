@@ -9,7 +9,7 @@ export default function NotFound() {
         The page you&apos;re looking for doesn&apos;t exist — or it may have moved during our migration.
       </p>
       <div className="mt-8 flex gap-3">
-        <Link href="/shop" className="btn-outline">Browse the shop</Link>
+        <Link href="/platform" className="btn-outline">See the platform</Link>
         <Link href="/" className="btn-primary">Back home</Link>
       </div>
     </div>

@@ -64,12 +64,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       </div>
 
       <div className="mt-12 rounded-card bg-algaeo-green-pale p-8 text-center">
-        <h3 className="font-display text-2xl">Ready to put this biology to work?</h3>
+        <h3 className="font-display text-2xl">See it against your own fields</h3>
         <p className="mt-2 text-algaeo-text-mid">
-          Claim a free 100 mL trial sample — you only pay $4.99 shipping.
+          We&apos;ll walk through a live recommendation using real soil and crop data from your
+          operation.
         </p>
-        <Link href="/shop/algaeo-free-trial-growforce" className="btn-primary mt-4">
-          Claim Free Sample →
+        <Link href="/request-demo" className="btn-primary mt-4">
+          Request a Demo →
         </Link>
       </div>
     </article>

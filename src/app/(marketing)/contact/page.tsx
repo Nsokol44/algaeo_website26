@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/layout/ContactForm";
+import { siteConfig } from "@/config/site";
 
 export const metadata = {
   title: "Contact Us",
@@ -30,7 +31,7 @@ export default async function ContactPage({
             </div>
             <div>
               <dt className="font-semibold text-algaeo-text-dark">Email</dt>
-              <dd className="text-algaeo-text-mid">hello@algaeo.com</dd>
+              <dd className="text-algaeo-text-mid">{siteConfig.supportEmail}</dd>
             </div>
           </dl>
         </div>

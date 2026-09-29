@@ -6,6 +6,7 @@ export const metadata = { title: "Demo Requests" };
 const SOURCE_LABELS: Record<string, string> = {
   "demo-request": "Demo Request",
   pricing: "Pricing Question",
+  pilot: "Pilot Inquiry",
   contact: "General Contact",
 };
 

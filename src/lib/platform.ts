@@ -7,9 +7,29 @@
 export const HOW_IT_WORKS_STEPS: { n: string; title: string; body: string }[] = [
   { n: "1", title: "Enter Field Data", body: "Soil type and test results, crop type, target yield, and any application history you have on file." },
   { n: "2", title: "The Model Runs", body: "Soil/crop/field data is cross-referenced against formulation logic built on established agronomic relationships — not a single fixed recipe." },
-  { n: "3", title: "Get a Recommendation", body: "Specific blend ratios, application rate, timing, and microbial dosing guidance — something an agronomist can act on or adjust directly." },
+  { n: "3", title: "Get a Recommendation", body: "Specific blend ratios, application rates, and timing your agronomist can act on or adjust directly. Microbial dosing guidance is available as an optional module." },
   { n: "4", title: "Your Co-Op Blends & Ships", body: "Physical blending and distribution stay exactly where they are today, under your existing fertilizer registration." },
 ];
+
+export const PILOT = {
+  title: "Start with a paid pilot",
+  intro:
+    "Before you commit to a subscription, run Algaeo on your own fields at one or two locations for a few months. Your agronomists stay in the loop, and we agree in writing on how success is measured before we start.",
+  measured: [
+    "Cost per unit of nutrient, compared with your current recommendation",
+    "Agronomist time spent per recommendation",
+    "Share of recommendations your team actually blends and applies",
+  ],
+  terms: [
+    "Paid and scoped to one or two locations",
+    "Success measures agreed in writing up front",
+    "A short results summary you can share with your board",
+  ],
+  lookingFor:
+    "We're looking for a small number of Southeast co-ops and commercial blenders to pilot with.",
+  cta: "Ask About a Pilot",
+  href: "/contact?topic=pilot",
+};
 
 export interface PricingTier {
   name: string;
@@ -43,7 +63,7 @@ export const PRICING_TIERS: PricingTier[] = [
     features: [
       "Everything in Starter",
       "Unlimited locations & agronomist seats",
-      "Microbial dosing guidance included",
+      "Optional microbial dosing guidance",
       "Field-data history & recommendation tracking",
       "Priority support",
     ],

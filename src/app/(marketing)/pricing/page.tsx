@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PRICING_TIERS } from "@/lib/platform";
+import { PILOT, PRICING_TIERS } from "@/lib/platform";
 
 export const metadata = {
   title: "Pricing",
@@ -14,7 +14,8 @@ export default function PricingPage() {
         <h1>Built for How Co-Ops Actually Buy Software</h1>
         <p className="mt-4 text-algaeo-text-mid">
           Every tier is sold through a short demo, not a self-serve checkout — pricing depends on
-          locations, seats, and how you want this to fit into your existing workflow.
+          locations, seats, and how you want this to fit into your existing workflow. Most co-ops
+          start with a paid pilot.
         </p>
       </div>
 
@@ -49,6 +50,22 @@ export default function PricingPage() {
             </Link>
           </div>
         ))}
+      </div>
+
+      <div className="card mx-auto mt-14 grid max-w-4xl gap-8 p-8 md:grid-cols-2">
+        <div>
+          <h2 className="font-display text-2xl">{PILOT.title}</h2>
+          <p className="mt-3 text-sm text-algaeo-text-mid">{PILOT.intro}</p>
+          <Link href={PILOT.href} className="btn-primary mt-5">{PILOT.cta}</Link>
+        </div>
+        <ul className="space-y-3 text-sm text-algaeo-text-mid">
+          {PILOT.terms.map((t) => (
+            <li key={t} className="flex gap-2">
+              <span className="text-algaeo-green-light">✓</span>
+              {t}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-algaeo-text-light">

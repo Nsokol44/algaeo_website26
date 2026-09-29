@@ -31,6 +31,20 @@ export default function TermsPage() {
           and application practices all affect real-world results.
         </p>
 
+        <h2>Professional judgment</h2>
+        <p>
+          Recommendations do not replace the professional judgment of your agronomists. Your
+          organization remains responsible for reviewing each recommendation and for the blending,
+          application, and advice decisions it makes based on it.
+        </p>
+
+        <h2>Pilots</h2>
+        <p>
+          Pilot engagements are scoped in a written pilot agreement that sets out the locations,
+          duration, fees, and success measures. Where a pilot agreement conflicts with these terms,
+          the pilot agreement controls for that pilot.
+        </p>
+
         <h2>Subscription & billing</h2>
         <p>
           Subscription pricing and terms are set out in your order form or service agreement. We

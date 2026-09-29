@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HOW_IT_WORKS_STEPS } from "@/lib/platform";
+import { HOW_IT_WORKS_STEPS, PILOT } from "@/lib/platform";
 
 export const metadata = {
   title: "Platform",
@@ -52,9 +52,26 @@ export default function PlatformPage() {
 
           <h2>What Comes Out</h2>
           <p>
-            A specific blend recommendation: ratios, application rate, timing, and microbial dosing
-            guidance where relevant — something a co-op agronomist can act on directly, or adjust based
-            on what they know about a specific grower&apos;s field that the model doesn&apos;t have.
+            A specific blend recommendation: ratios, application rate, and timing — something a co-op
+            agronomist can act on directly, or adjust based on what they know about a specific
+            grower&apos;s field that the model doesn&apos;t have. Microbial dosing guidance is available
+            as an optional module where it&apos;s relevant.
+          </p>
+
+          <h2>Where Your Agronomist Fits</h2>
+          <p>
+            Every recommendation is guidance for your agronomist to evaluate and adjust. Algaeo is a
+            second opinion to check against, not a replacement for the person who knows the grower and
+            the field.
+          </p>
+
+          <h2>How We Prove It</h2>
+          <p>
+            We&apos;d rather show you than ask you to take our word for it. In a pilot on your own
+            fields, we measure {PILOT.measured[0].charAt(0).toLowerCase() + PILOT.measured[0].slice(1)};{" "}
+            {PILOT.measured[1].charAt(0).toLowerCase() + PILOT.measured[1].slice(1)}; and{" "}
+            {PILOT.measured[2].charAt(0).toLowerCase() + PILOT.measured[2].slice(1)}. You see the
+            numbers, and so does your board.
           </p>
 
           <h2>What Doesn&apos;t Change</h2>
@@ -71,7 +88,10 @@ export default function PlatformPage() {
           <p className="mt-2 text-algaeo-text-mid">
             We&apos;ll walk through a live recommendation using real soil and crop data from your operation.
           </p>
-          <Link href="/request-demo" className="btn-primary mt-4">Request a Demo →</Link>
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <Link href="/request-demo" className="btn-primary">Request a Demo →</Link>
+            <Link href={PILOT.href} className="btn-outline">{PILOT.cta}</Link>
+          </div>
         </div>
       </div>
     </div>

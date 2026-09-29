@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getPublishedPosts } from "@/lib/queries";
 import { formatDate } from "@/lib/format";
-import { HOW_IT_WORKS_STEPS, PRICING_TIERS } from "@/lib/platform";
+import { HOW_IT_WORKS_STEPS, PILOT, PRICING_TIERS } from "@/lib/platform";
 
 export default async function HomePage() {
   const posts = (await getPublishedPosts()).slice(0, 3);
@@ -25,7 +25,7 @@ export default async function HomePage() {
             <Link href="/platform" className="btn-outline">See How It Works</Link>
           </div>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {["Soil + Crop + Field Data In", "Blend Ratio + Dosing Out", "No Product to Sell", "Your Co-Op Keeps the Registration"].map((s) => (
+            {["Soil + Crop + Field Data In", "Blend Ratio + Rate + Timing Out", "No Product to Sell", "Your Co-Op Keeps the Registration"].map((s) => (
               <span key={s} className="stat-pill">{s}</span>
             ))}
           </div>
@@ -43,6 +43,10 @@ export default async function HomePage() {
               whose compensation depends on which product gets recommended. That&apos;s not a knock on
               any individual rep. It&apos;s a structural problem, and it doesn&apos;t go away by asking
               anyone to be more virtuous.
+            </p>
+            <p className="mt-4 text-algaeo-text-mid">
+              Algaeo gives your agronomists an independent recommendation to check against, so a
+              blend decision rests on the field&apos;s data instead of on who is selling.
             </p>
           </div>
         </div>
@@ -77,7 +81,7 @@ export default async function HomePage() {
         <div className="container-x">
           <div className="card grid items-center gap-8 p-8 md:grid-cols-2 md:p-12">
             <div>
-              <p className="eyebrow">Not a Regulated Substance</p>
+              <p className="eyebrow">Software, Not Product</p>
               <h2>We Don&apos;t Manufacture, Blend, or Ship Anything.</h2>
               <p className="mt-4 text-algaeo-text-mid">
                 Algaeo is software. Your co-op already holds the fertilizer registration required to
@@ -122,6 +126,32 @@ export default async function HomePage() {
                 </Link>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PILOT ────────────────────────────────────────────── */}
+      <section className="py-20">
+        <div className="container-x">
+          <div className="card grid gap-8 p-8 md:grid-cols-2 md:p-12">
+            <div>
+              <p className="eyebrow">Pilot</p>
+              <h2>{PILOT.title}</h2>
+              <p className="mt-4 text-algaeo-text-mid">{PILOT.intro}</p>
+              <Link href={PILOT.href} className="btn-primary mt-6">{PILOT.cta}</Link>
+            </div>
+            <div>
+              <h4 className="font-semibold">What we measure together</h4>
+              <ul className="mt-3 space-y-3 text-sm text-algaeo-text-mid">
+                {PILOT.measured.map((t) => (
+                  <li key={t} className="flex gap-2">
+                    <span className="text-algaeo-green-light">✓</span>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-sm text-algaeo-text-light">{PILOT.lookingFor}</p>
+            </div>
           </div>
         </div>
       </section>

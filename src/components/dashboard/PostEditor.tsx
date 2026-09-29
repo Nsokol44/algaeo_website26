@@ -7,9 +7,7 @@ import remarkGfm from "remark-gfm";
 import { savePost, type PostInput } from "@/app/dashboard/actions";
 
 const CATEGORIES = [
-  "Regenerative Agriculture", "Plant Health", "Farm Economics", "AgTech and Innovation",
-  "Carbon Capture", "Algae Cultivation", "Marine Aquaculture", "Biofertilizer",
-  "Global Trends and Economics",
+  "Industry", "Product", "Agronomy", "Co-Op Operations", "Blend Economics", "Case Study",
 ];
 
 export function PostEditor({ initial }: { initial?: Partial<PostInput> }) {
@@ -50,7 +48,7 @@ export function PostEditor({ initial }: { initial?: Partial<PostInput> }) {
       )}
 
       <div className="grid gap-4">
-        <Field label="Title" value={title} onChange={setTitle} placeholder="How 12-strain microbes fix atmospheric nitrogen" />
+        <Field label="Title" value={title} onChange={setTitle} placeholder="What a second opinion on a blend actually costs a co-op" />
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Slug (optional — auto-generated)" value={slug} onChange={setSlug} placeholder="auto-from-title" />
           <label className="block">

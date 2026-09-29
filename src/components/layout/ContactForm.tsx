@@ -6,6 +6,7 @@ import { submitLead } from "@/app/(marketing)/contact/actions";
 const TOPICS = [
   { value: "demo-request", label: "Request a demo" },
   { value: "pricing", label: "Pricing question" },
+  { value: "pilot", label: "Ask about a pilot" },
   { value: "contact", label: "General inquiry" },
 ];
 

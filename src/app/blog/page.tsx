@@ -2,7 +2,10 @@ import Link from "next/link";
 import { getPublishedPosts } from "@/lib/queries";
 import { formatDate } from "@/lib/format";
 
-export const metadata = { title: "News & Lab Notes" };
+export const metadata = {
+  title: "Blog",
+  description: "Notes on independent formulation, blend economics, and how co-ops make fertilizer decisions.",
+};
 
 export default async function BlogPage() {
   const posts = await getPublishedPosts();
@@ -11,11 +14,11 @@ export default async function BlogPage() {
   return (
     <div className="container-x py-14">
       <header className="mb-10">
-        <p className="eyebrow">From the Lab Bench</p>
-        <h1>News &amp; Lab Notes</h1>
+        <p className="eyebrow">Blog</p>
+        <h1>Notes on Independent Formulation</h1>
         <p className="mt-3 max-w-2xl text-algaeo-text-mid">
-          Agronomy deep-dives, trial data updates, and application guides — written for growers and
-          agronomists who want to understand what&apos;s happening below the surface.
+          Plain-language notes for co-op agronomists and blenders on how blend recommendations get
+          made, what they cost, and where the advice comes from.
         </p>
       </header>
 

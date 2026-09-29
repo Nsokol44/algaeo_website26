@@ -93,7 +93,7 @@ create table public.leads (
   email      text not null,
   org        text,
   message    text,
-  source     text not null default 'contact', -- 'demo-request' | 'pricing' | 'contact' | 'newsletter'
+  source     text not null default 'contact', -- 'demo-request' | 'pricing' | 'pilot' | 'contact' | 'newsletter'
   created_at timestamptz not null default now()
 );
 

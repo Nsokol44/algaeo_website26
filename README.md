@@ -32,6 +32,8 @@ e-commerce database migrations are preserved for history in
   consumer GrowForce articles
 - **Dashboard**: blog CMS (unchanged) + a new `/dashboard/leads` page to view demo requests, which
   didn't exist before since the old site's conversion goal was checkout, not a form submission
+- **Pilot offer**: a paid-pilot section on the homepage, `/pricing`, and `/platform`, routed to
+  `/contact?topic=pilot` (stored as `source = 'pilot'` in `leads`)
 - **Legal**: privacy policy and terms of service rewritten for a software/data context — no more
   shipping/returns policies, since there's no physical product
 - **The ambient bubble/algae-drift visual motif is unchanged** — still genuinely fits an algae-biology
@@ -49,6 +51,18 @@ No product-recommendation engine itself — this repo is the marketing/content/l
 platform, not the digital-twin model or its API. That's a separate application.
 
 ---
+
+## After deploying: two things the code can't fix
+
+The live site can show older positioning than this repo, for two reasons:
+
+1. **Environment variables override `config/site.ts`.** If `NEXT_PUBLIC_SITE_TAGLINE`,
+   `NEXT_PUBLIC_SITE_DESCRIPTION`, or `NEXT_PUBLIC_SUPPORT_EMAIL` are set in Vercel with older values,
+   the page title, social title, footer text, and contact email will keep showing them. Update or
+   delete them in Vercel → Settings → Environment Variables, then redeploy.
+2. **Blog posts live in the database, not the repo.** Run
+   `supabase/maintenance/unpublish-legacy-posts.sql` in the Supabase SQL Editor to draft the old
+   biofertilizer-era posts.
 
 ## Prerequisites
 

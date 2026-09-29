@@ -7,10 +7,10 @@ const env = (key: string, fallback = "") => process.env[key] ?? fallback;
 
 export const siteConfig = {
   name: env("NEXT_PUBLIC_SITE_NAME", "Algaeo"),
-  tagline: env("NEXT_PUBLIC_SITE_TAGLINE", "Independent Formulation Guidance for Co-Ops"),
+  tagline: env("NEXT_PUBLIC_SITE_TAGLINE", "Independent Blend Recommendations for Co-Ops"),
   description: env(
     "NEXT_PUBLIC_SITE_DESCRIPTION",
-    "Algaeo turns soil type, crop type, and field data into fertilizer blend recommendations for co-op agronomists and commercial blenders — independent of any manufacturer, so the advice isn't tied to a sale.",
+    "Algaeo turns soil type, crop type, and field data into fertilizer blend recommendations for co-op agronomists and commercial blenders — an independent second opinion, not tied to any manufacturer's sale.",
   ),
   url: env("NEXT_PUBLIC_SITE_URL", "http://localhost:3000"),
 
